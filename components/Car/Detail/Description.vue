@@ -1,10 +1,13 @@
 <template>
 	<div class="mt-5">
 		<p class="mb-10">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-			facere expedita ad, id, nostrum soluta, nulla dolor unde atque quae
-			explicabo! Odit illum nisi id praesentium, laudantium fugit numquam
-			ipsa.
+			{{ description }}
 		</p>
 	</div>
 </template>
+
+<script setup>
+const props = defineProps({
+	description: String,
+})
+</script>
