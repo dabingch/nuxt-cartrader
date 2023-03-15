@@ -15,6 +15,8 @@
 const error = useError()
 
 const onClick = () => {
-	navigateTo('/')
+	clearError({
+		redirect: '/',
+	})
 }
 </script>
