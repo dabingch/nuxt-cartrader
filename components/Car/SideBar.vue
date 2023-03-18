@@ -23,7 +23,22 @@
 		</div>
 		<div class="p-5 flex justify-between relative cursor-pointer border-b">
 			<h3>Make</h3>
-			<h3 class="text-blue-400 capitalize">Toyota</h3>
+			<h3 @click="updateModal('make')" class="text-blue-400 capitalize">
+				{{ route.params.make || 'Any' }}
+			</h3>
+			<div
+				v-if="modal.make"
+				class="absolute border shadow left-56 p-5 top-1 -m-1 w-[600px] flex justify-between flex-wrap bg-white"
+			>
+				<h4
+					v-for="make in makes"
+					:key="make"
+					class="w-1/3"
+					@click="onChangeMake(make)"
+				>
+					{{ make }}
+				</h4>
+			</div>
 		</div>
 		<div class="p-5 flex justify-between relative cursor-pointer">
 			<h3>Price</h3>
@@ -33,6 +48,8 @@
 </template>
 
 <script setup>
+const { makes } = useCars()
+
 const modal = ref({
 	make: false,
 	location: false,
@@ -57,5 +74,10 @@ const onChangeLocation = () => {
 	updateModal('location')
 	navigateTo(`/city/${city.value}/car/${route.params.make}`)
 	city.value = ''
+}
+
+const onChangeMake = (make) => {
+	updateModal('make')
+	navigateTo(`/city/${route.params.city}/car/${make}`)
 }
 </script>
