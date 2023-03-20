@@ -8,10 +8,10 @@
 			</div>
 		</div>
 		<div class="p-3 flex">
-			<NuxtLink
+			<nuxt-link
 				class="text-blue-400 mr-4"
 				:to="`/profile/listings/view/${listing.id}`"
-				>View</NuxtLink
+				>View</nuxt-link
 			>
 			<p class="text-red-400 cursor-pointer">Delete</p>
 		</div>
