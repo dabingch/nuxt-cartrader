@@ -24,7 +24,6 @@ definePageMeta({
 })
 
 const supabase = useSupabaseClient()
-const user = useSupabaseUser()
 
 const handleLogin = async () => {
 	const { error } = await supabase.auth.signInWithOAuth({
