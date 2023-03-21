@@ -1,6 +1,5 @@
 <template>
 	<div class="mt-10">
-		{{ user }}
 		<h1 class="text-5xl font-bold mb-7">Log in</h1>
 		<button
 			@click="handleLogin"
@@ -14,6 +13,14 @@
 <script setup>
 definePageMeta({
 	layout: 'custom',
+	middleware: [
+		function (to, from) {
+			const user = useSupabaseUser()
+			if (user.value) return navigateTo('/')
+
+			return
+		},
+	],
 })
 
 const supabase = useSupabaseClient()
@@ -26,6 +33,7 @@ const handleLogin = async () => {
 
 	if (error) {
 		console.log('Error logging in', error)
+		return
 	}
 }
 </script>
