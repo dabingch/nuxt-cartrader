@@ -2,7 +2,7 @@
 	<div>
 		<CarCards v-if="cars.length" :cars="cars" />
 		<div v-else>
-			<h1 class="text-red-600">No cars found</h1>
+			<h1 class="text-red-600">No cars found in this location</h1>
 		</div>
 	</div>
 </template>
