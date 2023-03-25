@@ -1,0 +1,18 @@
+### Add a car listing
+POST http://localhost:3000/api/car/listings
+content-type: application/json
+
+{
+  "make": "Honda",
+  "model": "Civic",
+  "year": 2000,
+  "miles": 1000,
+  "city": "Austin",
+  "numberOfSeats": 5,
+  "features": ["Leather Interior"],
+  "image": "1221",
+  "listerId": "111",
+  "price": 50000,
+  "name": "Honda Civic",
+  "description": "This is a really really pretty good car"
+}
