@@ -7,7 +7,7 @@
 			<nuxt-link class="text-3xl font-mono" to="/">CarTrader</nuxt-link>
 			<div class="flex" v-if="user">
 				<nuxt-link class="mr-5" to="/profile/listings"
-					>profile</nuxt-link
+					>Profile</nuxt-link
 				>
 				<p @click="handleLogout" class="cursor-pointer">Logout</p>
 			</div>
