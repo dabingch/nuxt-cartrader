@@ -16,3 +16,6 @@ content-type: application/json
   "name": "Honda Civic",
   "description": "This is a really really pretty good car"
 }
+
+### Get car listings of a user
+GET http://localhost:3000/api/car/listings/user/111
