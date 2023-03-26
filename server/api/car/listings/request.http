@@ -19,3 +19,6 @@ content-type: application/json
 
 ### Get car listings of a user
 GET http://localhost:3000/api/car/listings/user/111
+
+### Delete a listing
+DELETE http://localhost:3000/api/car/listings/1
