@@ -22,3 +22,17 @@ GET http://localhost:3000/api/car/listings/user/111
 
 ### Delete a listing
 DELETE http://localhost:3000/api/car/listings/1
+
+### Post a message in a listing
+POST http://localhost:3000/api/car/listings/2/message
+content-type: application/json
+
+{
+  "message": "This is a really really really good message",
+  "phone": "1112223333",
+  "email": "test@test.com",
+  "name": "test"
+}
+
+### Get messages in a listing
+GET http://localhost:3000/api/car/listings/2/message
