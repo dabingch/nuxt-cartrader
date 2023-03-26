@@ -3,25 +3,31 @@ POST http://localhost:3000/api/car/listings
 content-type: application/json
 
 {
-  "make": "Honda",
-  "model": "Civic",
-  "year": 2000,
-  "miles": 1000,
-  "city": "Austin",
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 2010,
+  "miles": 2000,
+  "city": "Toronto",
   "numberOfSeats": 5,
   "features": ["Leather Interior"],
   "image": "1221",
   "listerId": "111",
-  "price": 50000,
-  "name": "Honda Civic",
+  "price": 60000,
+  "name": "Toyota Camry",
   "description": "This is a really really pretty good car"
 }
 
 ### Get car listings of a user
 GET http://localhost:3000/api/car/listings/user/111
 
+### Get car listings of a city
+GET http://localhost:3000/api/cars/toronto?make=Toyota&minPrice=70000&maxPrice=174000
+
+### Get a car based on id
+GET http://localhost:3000/api/car/2
+
 ### Delete a listing
-DELETE http://localhost:3000/api/car/listings/1
+DELETE http://localhost:3000/api/car/listings/3
 
 ### Post a message in a listing
 POST http://localhost:3000/api/car/listings/2/message
