@@ -13,7 +13,7 @@
 			@click="navigateTo(`/car/${car.name}-${car.id}`)"
 		>
 			<nuxt-img
-				:src="car.image"
+				:src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
 				alt="Car image"
 				class="w-[300px] h-full"
 			/>
@@ -40,4 +40,5 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['favor'])
+const config = useRuntimeConfig()
 </script>
