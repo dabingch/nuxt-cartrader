@@ -52,6 +52,10 @@ definePageMeta({
 	middleware: ['auth'],
 })
 
+useHead({
+	title: 'Create a new Listing',
+})
+
 const { makes } = useCars()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()

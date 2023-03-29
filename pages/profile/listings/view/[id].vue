@@ -18,4 +18,9 @@ const route = useRoute()
 const { data: messages } = useFetch(
 	`/api/car/listings/${route.params.id}/message`
 )
+const { toTitleCase } = useUtilities()
+
+useHead({
+	title: `Messages of car ${toTitleCase(route.params.id)}`,
+})
 </script>

@@ -25,6 +25,10 @@ const { data: listings } = await useFetch(
 	`/api/car/listings/user/${user.value.id}`
 )
 
+useHead({
+	title: 'My Listings',
+})
+
 const handleDelete = async (id) => {
 	await $fetch(`/api/car/listings/${id}`, {
 		method: 'DELETE',

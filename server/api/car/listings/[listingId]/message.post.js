@@ -20,7 +20,10 @@ const schema = Joi.object({
 
 export default defineEventHandler(async (event) => {
 	const body = await readBody(event)
-	const { listingId } = event.context.params
+	let { listingId } = event.context.params
+	if (listingId.includes('-')) {
+		listingId = listingId.split('-')[1]
+	}
 
 	const { error } = await schema.validate(body)
 	if (error) {
