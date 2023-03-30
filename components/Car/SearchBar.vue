@@ -6,7 +6,7 @@
 			type="text"
 			class="py-3 px-5 w-full text-2xl rounded-full focus:outline-none"
 			:class="cityError ? 'border-red-500 border' : ''"
-			placeholder="Search by city..."
+			placeholder="Search by city, e.g. Toronto"
 			v-model="city"
 		/>
 		<button class="bg-sky-500 px-10 text-white" @click="onSearch">

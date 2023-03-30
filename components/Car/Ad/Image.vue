@@ -7,10 +7,10 @@
 					<input
 						type="file"
 						accept="image/*"
-						class="opacity-0 absolute cursor-pointer"
+						class="opacity-0 absolute"
 						@change="onImageUpload"
 					/>
-					<span class="cursor-pointer">Browser File</span>
+					<span>Browser File </span>
 				</div>
 				<div class="border p-2 mt-3 w-56" v-if="image.preview">
 					<img :src="image.preview" alt="" class="img-fluid" />
