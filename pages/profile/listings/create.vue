@@ -27,16 +27,16 @@
 			<CarAdImage @change-input="onChangeInput" />
 			<div>
 				<button
-					:disabled="isButtonDisabled"
+					:disabled="isButtonDisabled || isLoading"
 					class="bg-blue-400 text-white rounded py-2 px-7 mt-3"
 					:class="
-						isButtonDisabled
+						isButtonDisabled || isLoading
 							? 'cursor-not-allowed'
 							: 'cursor-pointer'
 					"
 					@click.prevent="handleSubmit"
 				>
-					Submit
+					{{ isLoading ? 'Processing...' : 'Submit' }}
 				</button>
 				<p v-if="errorMessage" class="mt-3 text-red-600">
 					{{ errorMessage }}
@@ -76,6 +76,7 @@ const info = useState('adInfo', () => {
 })
 
 const errorMessage = ref('')
+const isLoading = ref(false)
 
 const onChangeInput = (data, name) => {
 	info.value[name] = data
@@ -135,6 +136,7 @@ const isButtonDisabled = computed(() => {
 })
 
 const handleSubmit = async () => {
+	isLoading.value = true
 	const fileName = Math.floor(Math.random() * 100000)
 	const { data, error } = await supabase.storage
 		.from('images')
@@ -142,6 +144,7 @@ const handleSubmit = async () => {
 
 	if (error) {
 		errorMessage.value = "Couldn't upload image"
+		isLoading = false
 		return
 	}
 
@@ -169,6 +172,8 @@ const handleSubmit = async () => {
 	} catch (error) {
 		errorMessage.value = error.statusMessage
 		await supabase.storage.from('images').remove(data.path)
+	} finally {
+		isLoading.value = false
 	}
 }
 </script>
