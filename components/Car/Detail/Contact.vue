@@ -29,11 +29,15 @@
 		</div>
 		<button
 			class="bg-blue-400 text-white px-10 py-3 rounded mt-4"
-			:class="isDisabledButton ? 'cursor-not-allowed' : 'cursor-pointer'"
+			:class="
+				isDisabledButton || isLoading
+					? 'cursor-not-allowed'
+					: 'cursor-pointer'
+			"
 			@click="onSubmit"
-			:disabled="isDisabledButton"
+			:disabled="isDisabledButton || isLoading"
 		>
-			Submit
+			{{ isLoading ? 'Processing...' : 'Submit' }}
 		</button>
 		<p v-if="errorMessage" class="mt-3 text-red-600">
 			{{ errorMessage }}
@@ -56,6 +60,7 @@ const message = ref({
 
 const errorMessage = ref('')
 const successMessage = ref('')
+const isLoading = ref(false)
 
 const isDisabledButton = computed(() => {
 	for (let key in message.value) {
@@ -66,6 +71,7 @@ const isDisabledButton = computed(() => {
 })
 
 const onSubmit = async () => {
+	isLoading.value = true
 	errorMessage.value = ''
 	successMessage.value = ''
 	try {
@@ -85,6 +91,8 @@ const onSubmit = async () => {
 		successMessage.value = 'Your message has been sent!'
 	} catch (error) {
 		errorMessage.value = error.statusMessage
+	} finally {
+		isLoading.value = false
 	}
 }
 </script>
