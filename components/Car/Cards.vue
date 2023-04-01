@@ -1,9 +1,11 @@
 <template>
-	<div class="w-full">
+	<div class="w-full md:w-[600px]">
 		<ClientOnly>
 			<template #fallback>
 				<!-- this will be rendered on server side -->
-				<p class="text-4xl text-cyan-400">Loading cars...</p>
+				<p class="md:text-2xl text-4xl text-cyan-400">
+					Loading cars...
+				</p>
 			</template>
 			<CarCard
 				v-for="car in cars"
