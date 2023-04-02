@@ -8,13 +8,16 @@
 				>+</nuxt-link
 			>
 		</div>
-		<div class="shadow rounded p-3 mt-5">
+		<div v-if="!isLoading" class="shadow rounded p-3 mt-5">
 			<CarListingCard
 				v-for="listing in listings"
 				:key="listing.id"
 				:listing="listing"
 				@deleteClick="handleDelete"
 			/>
+		</div>
+		<div class="spinner" v-else>
+			<Spinner />
 		</div>
 	</div>
 </template>
@@ -27,15 +30,24 @@ const { data: listings } = await useFetch(
 	`/api/car/listings/user/${user.value.id}`
 )
 
+const isLoading = ref(false)
+
 useHead({
 	title: 'My Listings',
 })
 
 const handleDelete = async (id) => {
-	await $fetch(`/api/car/listings/${id}`, {
-		method: 'DELETE',
-	})
-	listings.value = listings.value.filter((listing) => listing.id !== id)
+	isLoading.value = true
+	try {
+		await $fetch(`/api/car/listings/${id}`, {
+			method: 'DELETE',
+		})
+		listings.value = listings.value.filter((listing) => listing.id !== id)
+	} catch (err) {
+		console.error(err)
+	} finally {
+		isLoading.value = false
+	}
 }
 
 definePageMeta({
@@ -43,3 +55,11 @@ definePageMeta({
 	middleware: ['auth'],
 })
 </script>
+
+<style scoped>
+.spinner {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+</style>
