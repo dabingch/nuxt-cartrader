@@ -21,6 +21,8 @@
 
 <script setup>
 const user = useSupabaseUser()
+// Use useAsyncData instead if you want to do some logic with the response
+// useAsyncData("<name>", async () => {}, { watch: [<watch data to refresh>]})
 const { data: listings } = await useFetch(
 	`/api/car/listings/user/${user.value.id}`
 )

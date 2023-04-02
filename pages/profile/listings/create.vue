@@ -137,6 +137,7 @@ const isButtonDisabled = computed(() => {
 
 const handleSubmit = async () => {
 	isLoading.value = true
+	errorMessage.value = ''
 	const fileName = Math.floor(Math.random() * 100000)
 	const { data, error } = await supabase.storage
 		.from('images')
